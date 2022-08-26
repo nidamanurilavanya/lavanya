@@ -1,0 +1,17 @@
+﻿@model WebApplication15.Models.product
+
+
+
+<table>
+    <tr>
+        <td>
+            @Html.HiddenFor(e=>e.id)@Html.HiddenFor(e=>e.categID)
+            @Html.DisplayFor(e=>e.name)
+        </td>
+
+
+
+
+        <td>@Html.CheckBoxFor(e=>e.check)</td>
+    </tr>
+</table>

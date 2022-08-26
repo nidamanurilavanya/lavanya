@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebApplication15.Models.product>
+
+@{
+    ViewData["Title"] = " Getproducts";
+}
+
+@using(Html.BeginForm()){
+       @Html.EditorForModel()
+       <input type = " submit" class=" btn btn-primay" values = "submit" />
+}

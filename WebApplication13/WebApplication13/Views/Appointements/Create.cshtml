@@ -1,0 +1,71 @@
+﻿@model WebApplication13.Models.Appointement
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var url = '@Url.Action("Speciality")';
+        var doc = $("#docid");
+        doc.empty();
+        doc.append($('<option></option>').text("Select").val("Select"));
+        $("#spec").change(function(){
+            $("#data").show();
+            var id=$(this).val();
+            $.getJSON(url,{id:id},function(response){
+                            doc.empty();
+            doc.append($('<option></option>').text("Select").val("Select"));
+            $.each(response,function(index, item){
+                doc.append($('<option></option>').text(item.text).val(item.Id));
+            });
+            });
+        });
+    });
+</script>
+
+<h1>Create</h1>
+
+<h4>Appointement</h4>
+<hr />
+
+<select id="spec" required>
+            <option>Select</option>
+            <option value="1">Cardiology</option>
+            <option value="2">Gynecology</option>
+            <option value="3">Orthopedics</option>
+        </select>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ptid" class="control-label"></label>
+                <select asp-for="ptid" class ="form-control" asp-items="ViewBag.ptid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="docid" class="control-label"></label>
+                <select asp-for="docid" class ="form-control" asp-items="ViewBag.docid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppointDate" class="control-label"></label>
+                <input asp-for="AppointDate" class="form-control" />
+                <span asp-validation-for="AppointDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

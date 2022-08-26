@@ -1,0 +1,49 @@
+﻿@model WebApplication15.Models.cart
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>cart</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="prodID" class="control-label"></label>
+                <input asp-for="prodID" class="form-control" />
+                <span asp-validation-for="prodID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="categid" class="control-label"></label>
+                <select asp-for="categid" class="form-control" asp-items="ViewBag.categid"></select>
+                <span asp-validation-for="categid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="user" class="control-label"></label>
+                <input asp-for="user" class="form-control" />
+                <span asp-validation-for="user" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dt" class="control-label"></label>
+                <input asp-for="dt" class="form-control" />
+                <span asp-validation-for="dt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
